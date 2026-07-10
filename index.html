@@ -1,4 +1,54 @@
 <!DOCTYPE html>
+<!--
+  FILE MAP — grep for a marker below instead of reading top to bottom.
+  Line numbers approximate; markers are exact.
+
+  CSS (in <style>, ~line 24–951):
+    /* 00 TICKER            ~49   ticker strip
+    /* 01 HERO               ~57   dictionary-entry hero
+    /* 02 RETRO TV           ~74   Higgsfield clip placeholder
+    /* 04 NAV                ~95   nav.wall subtitle wall (CJK/Tamil/Hokkien labels)
+    /* 05 STATEMENT          ~118  "make new memories" statement
+    /* 06 THE SESSIONS       ~124  session cards grid
+    /* 07 QUOTE              ~139  rotating-language quote block
+    /* 08 ABOUT TIME         ~147
+    /* 09 MENU               ~159  expandable dish rows, image-backed
+    /* 10 SEASONS            ~194  per-season colour cards
+    /* 11 TERMS              ~229
+    /* 12 FOOTER             ~240
+    SCROLL REVEAL (.sr / .sr-left / .sr-right / .in) ~268  entrance-animation system
+    MARQUEE BAND (.marquee-band / .mq-row / .mq-tile) ~394 scroll-driven image band
+    /* v7/v8/v10 FIXES       ~545, ~650, ~788   later cascade patches — see note below
+    /* 10 BACK TO TOP        ~935  fixed button, top-right, scroll-triggered
+
+  HTML (<body>, ~line 953 on):
+    colorbars section     ~987
+    marquee-band section  ~1002
+    nav.wall              ~1008
+    statement section     ~1016
+    sessions section      ~1023
+    quote section         ~1054
+    about section         ~1065
+    menu section          ~1078   dish accordion (data-img refs — some point to
+                                   assets/menu-*.jpg / mocktail.png that were never
+                                   shipped; pre-existing, unrelated to assets/img-*)
+    seasons-stack section ~1094
+    terms section          ~1198
+    footer                 ~1216
+
+  JS (<script>, ~line 1229 on):
+    SCROLL REVEAL trigger  ~1268
+    SCROLL-DRIVEN MARQUEE  ~1283
+    BACK TO TOP handler    ~1329
+
+  NOTE on the "v4/v5/v6/v7/v8/v10" comment labels above: these are NOT separable
+  site versions — they're one cascading stylesheet where later blocks (v7/v8/v10)
+  override earlier ones (v4-v6) by declaration order. Deleting an early block
+  breaks whatever later block patches it. Don't remove by version number.
+
+  Images: extracted from inline base64 to assets/img-01..15.{jpg,png,svg} —
+  see git history for the 4.3MB -> 69KB change. Reference by relative <img src>.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
