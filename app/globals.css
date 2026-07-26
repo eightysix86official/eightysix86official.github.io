@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #faf7ee;
+  --mustard: #eec643;
+  --navy: #0d21a1;
+  --blue: #0e59c3;
+  --dark: #121212;
+  --display-font: "Tilt Warp", system-ui, sans-serif;
+  --body-font: "Merriweather", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--navy);
+  font-family: var(--body-font);
+  line-height: 1.75;
+}
+
+h1, h2, h3, .display {
+  font-family: var(--display-font);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--mustard);
+  color: var(--dark);
+}
+
+.noise {
+  background-image: url("/textures/noise.png");
+  background-repeat: repeat;
+  background-size: 240px 240px;
+  opacity: 0.04;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
