@@ -1,0 +1,163 @@
+/*
+ * Apple-style design tokens: type scale, spacing, color (light + dark),
+ * radii, shadows, and blur as CSS custom properties.
+ * Pull values from here rather than inventing new ones so a design
+ * stays internally consistent. See references/*.md for rationale.
+ */
+
+:root {
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --font-size-hero: clamp(2.5rem, 6vw, 5.5rem);
+  --font-size-h1: clamp(1.75rem, 3.5vw, 2.75rem);
+  --font-size-h2: clamp(1.375rem, 2.5vw, 1.75rem);
+  --font-size-lede: 1.375rem;
+  --font-size-body: 1.0625rem;
+  --font-size-caption: 0.875rem;
+
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+
+  /* Spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+  --space-10: 64px;
+  --space-12: 96px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-pill: 980px;
+
+  /* Shadows */
+  --shadow-resting: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* Blur / glass */
+  --blur-glass: saturate(180%) blur(20px);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-spring-decel: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+
+  /* Color — light mode (default) */
+  --label-primary: #1d1d1f;
+  --label-secondary: #6e6e73;
+  --label-tertiary: #86868b;
+  --background-primary: #ffffff;
+  --background-secondary: #f5f5f7;
+  --background-elevated: #ffffff;
+  --separator: rgba(0, 0, 0, 0.08);
+  --glass-background: rgba(255, 255, 255, 0.72);
+
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --success: #34c759;
+  --warning: #ff9500;
+  --error: #ff3b30;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --label-primary: #f5f5f7;
+    --label-secondary: #a1a1a6;
+    --label-tertiary: #8e8e93;
+    --background-primary: #000000;
+    --background-secondary: #1d1d1f;
+    --background-elevated: #2c2c2e;
+    --separator: rgba(255, 255, 255, 0.12);
+    --glass-background: rgba(29, 29, 31, 0.72);
+
+    --accent: #2997ff;
+    --accent-hover: #47a6ff;
+  }
+}
+
+/* Manual theme override hook, e.g. for a toggle-driven [data-theme] attribute */
+:root[data-theme="dark"] {
+  --label-primary: #f5f5f7;
+  --label-secondary: #a1a1a6;
+  --label-tertiary: #8e8e93;
+  --background-primary: #000000;
+  --background-secondary: #1d1d1f;
+  --background-elevated: #2c2c2e;
+  --separator: rgba(255, 255, 255, 0.12);
+  --glass-background: rgba(29, 29, 31, 0.72);
+  --accent: #2997ff;
+  --accent-hover: #47a6ff;
+}
+
+:root[data-theme="light"] {
+  --label-primary: #1d1d1f;
+  --label-secondary: #6e6e73;
+  --label-tertiary: #86868b;
+  --background-primary: #ffffff;
+  --background-secondary: #f5f5f7;
+  --background-elevated: #ffffff;
+  --separator: rgba(0, 0, 0, 0.08);
+  --glass-background: rgba(255, 255, 255, 0.72);
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+}
+
+/* Reusable component classes */
+
+.apple-glass {
+  background: var(--glass-background);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  border-bottom: 1px solid var(--separator);
+}
+
+.apple-card {
+  background: var(--background-elevated);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-resting);
+}
+
+.apple-btn-primary {
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 500;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+.apple-btn-primary:hover { background: var(--accent-hover); }
+.apple-btn-primary:active { transform: scale(0.97); }
+
+.apple-btn-secondary {
+  background: var(--background-secondary);
+  color: var(--label-primary);
+  font-weight: 500;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--separator);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+.apple-btn-secondary:active { transform: scale(0.97); }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
